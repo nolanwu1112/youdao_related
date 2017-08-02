@@ -48,7 +48,7 @@ def extracting(vocab_input: str) ->list:
         else:
             temp_string = temp_string + " " + item
     print("<br>".join(new_content))
-    return vocab_input, "<br>".join(new_content)
+    return "<br>".join(new_content)
 
 def main():
     """ main function"""

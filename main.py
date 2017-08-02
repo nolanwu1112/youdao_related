@@ -1,20 +1,9 @@
 # -*- coding: utf-8 -*-
-""" todo:
-#* 1. Build a dict of vocab that needs derivatives
-#* 2. Explore the possibility of using data structures
-# 3. Explore dictionary.com's web structure
-# 4. Extract content with bs4
-# 5. Build a dict of vocab with derivative
-# 6. Anki import file
-"""
+""" extract data from youdao and writing it in a py file as a dict"""
 
 import sqlite3
-import time
-# import progressbar
 from extract import extracting
-# predefined attributes
 vocab_list = []
-err_log = r"/error_log/log.txt"
 
 # Method: retrieve vocab
 def retr_vocab(sql_path):
@@ -34,7 +23,7 @@ def store_der(sql_path, vocab_dict):
     with sqlite3.connect(sql_path) as connection:
         cursor = connection.cursor()
         for key, value in vocab_dict.items():
-            cursor.execute('UPDATE pho SET derivatives = ? WHERE vocab = ?;', (value, key))
+            cursor.execute('UPDATE pho SET youdao = ? WHERE vocab = ?;', (value, key))
             count = count + 1
             print(str(count)+ '/' + str(totalVocab))
 
@@ -45,18 +34,20 @@ def main():
     # retrieve a list of vocabulary
     sql_res = retr_vocab("./database/vocab.db")
     print("Obtained vocabulary from database")
-    # sql_res = ['glaze', 'abandon']
 
     for voc in sql_res:
         voc = str(voc[0])
         print("looping thru sql result: " + voc)
         try:
-            temp_ = extracting(voc)
-            dict_der[voc] = temp_
+            dict_der[voc] = extracting(voc)
         except:
             dict_der[voc] = None
     print("Finishing writing dictionary!")
     store_der(r"./database/vocab.db", dict_der)
+    print("Finishing writing database!!")
+    with open(r"related_data.py", "w") as file:
+        file.write(dict_der)
+    print("Finishing writing data file!")
 
 if __name__ == '__main__':
     main()
