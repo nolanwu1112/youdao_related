@@ -16,10 +16,12 @@ def extracting(vocab_input: str) ->list:
 
     # finding tags to related words
     findings = soup.find('div', {'id':'relWordTab'})
+    # part_speech = {}
     raw_content = []
     new_content = []
-    temp_list = []
     temp_string = ''
+    temp_list = []
+    dict_content = []
     vocab_root = findings.p.span.a.text
     hasPassRoot = False
 
@@ -35,19 +37,35 @@ def extracting(vocab_input: str) ->list:
         else:
             child_string = child_string.replace('\n', '').replace(' ', '')
             raw_content.append(child_string)
+    print("Finishing tags cleaning")
 
+    # Part of speech + vocabulary + Chinese definitions
     for item in raw_content:
         if item == raw_content[-1]:
             temp_string = temp_string + " " + item
+            temp_list.append(item)
             new_content.append(temp_string)
+            dict_content.append(temp_list[:])
         elif item == raw_content[0]:
             temp_string = item
+            temp_list = []
+            temp_list.append(item)
         elif ('.' in item) and (item != raw_content[0]):
             new_content.append(temp_string)
             temp_string = item
+            dict_content.append(temp_list[:])
+            temp_list = []
+            temp_list.append(item)
         else:
             temp_string = temp_string + " " + item
+            temp_list.append(item)
     print("<br>".join(new_content))
+    print(str(dict_content))
+
+    # return a importable text separated with breaklines <br>
+    """ as well as a dictionary in the format of
+    {vocab: {"n.": {n. vocab : chinese definition}}}"""
+
     return "<br>".join(new_content)
 
 def main():
