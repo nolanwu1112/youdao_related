@@ -72,5 +72,9 @@ def main():
         part_list.append(filter_part(extracting(vocab[0]), part_list))
     for i in part_list:
         print(i)
+    with open(r"part_of_speeches.txt", "w") as file:
+        for i in part_list:
+            file.write(i)
+
 if __name__ == "__main__":
     main()
