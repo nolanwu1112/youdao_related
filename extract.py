@@ -60,21 +60,17 @@ def extracting(vocab_input: str) ->list:
             temp_string = temp_string + " " + item
             temp_list.append(item)
     print("<br>".join(new_content))
-    print(str(dict_content))
-    
+    temp_dict_1 = {}
+    temp_dict_2 = {}
     # constructing a dictionary for part of speech
-    for firstLayer in dict_content:
-        temp_dict[]
-        for ind, item in enumerate(firstLayer):
-            
-    part_speech[vocab_input] = None
-            
-
+    for first_layer in dict_content:
+        for ind in range(1, len(first_layer)-1, 2):
+            temp_dict_2[first_layer[ind]] = first_layer[ind + 1]
+        temp_dict_1[first_layer[0]] = temp_dict_2.copy()
+    part_speech[vocab_input] = temp_dict_1.copy()
+    print(str(part_speech))
     # return a importable text separated with breaklines <br>
-    """ as well as a dictionary in the format of
-    {vocab: {"n.": {n. vocab : chinese definition}}}"""
-
-    return "<br>".join(new_content)
+    return "<br>".join(new_content), part_speech
 
 def main():
     """ main function"""
