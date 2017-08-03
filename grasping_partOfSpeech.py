@@ -11,8 +11,12 @@ def extracting(vocab_input: str) ->list:
     print("extracting vocab: " + vocab_input)
     # con_list = []
     dest_url = r"http://youdao.com/w/" + vocab_input + r"/#keyfrom=dict2.top"
-
-    sauce = ulreq.urlopen(dest_url).read()
+    
+    try:
+        sauce = ulreq.urlopen(dest_url).read()
+    except: URLError
+        print("Failed to open the URL")
+        break
     soup = bs.BeautifulSoup(sauce, 'lxml')
 
     # finding tags to related words
@@ -66,7 +70,7 @@ def main():
     vocab_list = retr(sql_p)
     part_list = ["n.", "adj.", "adv.", "v.", "vi.", "vt.", "pron.", "int."]
     for vocab in vocab_list:
-        part_list.append(filter_part(extracting(vocab), part_list))
+        part_list.append(filter_part(extracting(vocab[0]), part_list))
     for i in part_list:
         print(i)
 if __name__ == "__main__":
