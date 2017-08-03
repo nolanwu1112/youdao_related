@@ -16,7 +16,7 @@ def extracting(vocab_input: str) ->list:
 
     # finding tags to related words
     findings = soup.find('div', {'id':'relWordTab'})
-    # part_speech = {}
+    part_speech = {}
     raw_content = []
     new_content = []
     temp_string = ''
@@ -61,6 +61,14 @@ def extracting(vocab_input: str) ->list:
             temp_list.append(item)
     print("<br>".join(new_content))
     print(str(dict_content))
+    
+    # constructing a dictionary for part of speech
+    for firstLayer in dict_content:
+        temp_dict[]
+        for ind, item in enumerate(firstLayer):
+            
+    part_speech[vocab_input] = None
+            
 
     # return a importable text separated with breaklines <br>
     """ as well as a dictionary in the format of
