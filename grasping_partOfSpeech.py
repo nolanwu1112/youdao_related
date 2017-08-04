@@ -69,12 +69,14 @@ def main():
     vocab_list = retr(sql_p)
     part_list = ["n.", "adj.", "adv.", "v.", "vi.", "vt.", "pron.", "int."]
     for vocab in vocab_list:
-        part_list.append(filter_part(extracting(vocab[0]), part_list))
+        result = filter_part(extracting(vocab[0]), part_list) 
+        part_list.append(result[:])
     for i in part_list:
         print(i)
     with open(r"part_of_speeches.txt", "w") as file:
         for i in part_list:
-            file.write(i)
+            if i:
+                file.write(str(i))
 
 if __name__ == "__main__":
     main()
