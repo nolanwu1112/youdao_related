@@ -67,7 +67,7 @@ def main():
 #    extracting(args.vocab)
     sql_p = r"./database/vocab.db"
     vocab_list = retr(sql_p)
-    part_list = ["n.", "adj.", "adv.", "v.", "vi.", "vt.", "pron.", "int."]
+    part_list = ["n.", "adj.", "adv.", "v.", "vi.", "vt.", "pron.", "int.", "conj.", "abbr.", "prep.", "aux."]
     for vocab in vocab_list:
         result = filter_part(extracting(vocab[0]), part_list) 
         part_list.append(result[:])
