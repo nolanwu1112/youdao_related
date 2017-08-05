@@ -6,7 +6,7 @@ import re
 import argparse
 import bs4 as bs
 
-def web_scrap(vocab_input: str) ->list: # {{{
+def web_scrap(vocab_input: str) -> object: # {{{
     """extract related words on youdao.com """
     print("extracting vocab: " + vocab_input)
     # con_list = []
@@ -57,7 +57,7 @@ def wrangling(findings): # {{{
 
 def sorting(cleaned_content): # {{{
     """ Part of speech + vocabulary + Chinese definitions """
-    pos_pattern = re.compile(r"")
+    pos_pattern = re.compile(r"(?P<pos>\w+\.{1})")
     temp_string = ""
     # temp_list = []
     new_content = []
@@ -73,6 +73,7 @@ def sorting(cleaned_content): # {{{
             temp_string = item
         else:
             temp_string = temp_string + " " + item
+    print(str(new_content))
 
     #for item in cleaned_content:
     #    if item == cleaned_content[-1]:
@@ -117,8 +118,16 @@ def main(): # {{{
     parser.add_argument("vocab", help="Enter the vocab to find related vocab",\
             type=str)
     args = parser.parse_args()
-    extracting(args.vocab)
+    # extracting(args.vocab)
+    vocab_input = args.vocab
+    web_result = web_scrap(vocab_input)
+    if web_result:
+        sorting(wrangling(web_result))
+    else:
+        print("{} has no related words".format(vocab_input))
+        
 # }}}
+
 
 if __name__ == "__main__":
     main()
