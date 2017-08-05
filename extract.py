@@ -51,8 +51,8 @@ def wrangling(findings): # {{{
         else:
             child_string = child_string.replace('\n', '').replace(' ', '')
             raw_content.append(child_string)
-    return raw_content
     print("Finishing cleaning")
+    return raw_content
     # }}}
 
 def sorting(cleaned_content): # {{{
@@ -61,7 +61,7 @@ def sorting(cleaned_content): # {{{
     temp_string = ""
     # temp_list = []
     new_content = []
-    dict_content = []
+    # dict_content = []
     for item in cleaned_content:
         if item == cleaned_content[0]:
             temp_string = item
@@ -73,7 +73,7 @@ def sorting(cleaned_content): # {{{
             temp_string = item
         else:
             temp_string = temp_string + " " + item
-    print(str(new_content))
+    # print(str(new_content))
 
     #for item in cleaned_content:
     #    if item == cleaned_content[-1]:
@@ -95,8 +95,7 @@ def sorting(cleaned_content): # {{{
     #    else:
     #        temp_string = temp_string + " " + item
     #        temp_list.append(item)
-    
-    print("<br>".join(new_content))
+    return "<br>".join(new_content)
     # temp_dict_1 = {}
     # temp_dict_2 = {}
     # constructing a dictionary for part of speech
@@ -111,6 +110,14 @@ def sorting(cleaned_content): # {{{
     # return "<br>".join(new_content), part_speech
 
     # }}}
+
+def extracting(vocab_input):
+    """ extracting function for main.py to evoke"""
+    web_result = web_scrap(vocab_input)
+    if web_result:
+        return sorting(wrangling(web_result))
+    else:
+        return None
 
 def main(): # {{{
     """ main function"""
