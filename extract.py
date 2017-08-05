@@ -2,6 +2,7 @@
 """ stay alone function to parse content based on input vocabulary"""
 #["n.", "adj.", "adv.", "v.", "vi.", "vt.", "pron.", "int.", "conj.", "abbr.", "prep.", "aux."]
 import urllib.request as ulreq
+import re
 import argparse
 import bs4 as bs
 
@@ -55,10 +56,10 @@ def wrangling(findings): # {{{
     # }}}
 
 def sorting(cleaned_content): # {{{
-    # Part of speech + vocabulary + Chinese definitions
+    """ Part of speech + vocabulary + Chinese definitions """
     pos_pattern = re.compile(r"")
     temp_string = ""
-    temp_list = []
+    # temp_list = []
     new_content = []
     dict_content = []
     for item in cleaned_content:
@@ -67,7 +68,12 @@ def sorting(cleaned_content): # {{{
         elif item == cleaned_content[-1]:
             temp_string = temp_string + " " + item
             new_content.append(temp_string)
-        elif (item != cleaned_content[0]) and ()
+        elif (item != cleaned_content[0]) and (pos_pattern.match(item)):
+            new_content.append(temp_string)
+            temp_string = item
+        else:
+            temp_string = temp_string + " " + item
+
     #for item in cleaned_content:
     #    if item == cleaned_content[-1]:
     #        temp_string = temp_string + " " + item
@@ -88,19 +94,20 @@ def sorting(cleaned_content): # {{{
     #    else:
     #        temp_string = temp_string + " " + item
     #        temp_list.append(item)
+    
     print("<br>".join(new_content))
-    temp_dict_1 = {}
-    temp_dict_2 = {}
+    # temp_dict_1 = {}
+    # temp_dict_2 = {}
     # constructing a dictionary for part of speech
-    for first_layer in dict_content:
-        for ind in range(1, len(first_layer)-1, 2):
-            temp_dict_2[first_layer[ind]] = first_layer[ind + 1]
-        temp_dict_1[first_layer[0]] = temp_dict_2.copy()
-    part_speech[vocab_input] = temp_dict_1.copy()
-    print(str(part_speech))
+    # for first_layer in dict_content:
+    #     for ind in range(1, len(first_layer)-1, 2):
+    #         temp_dict_2[first_layer[ind]] = first_layer[ind + 1]
+    #     temp_dict_1[first_layer[0]] = temp_dict_2.copy()
+    # part_speech[vocab_input] = temp_dict_1.copy()
+    # print(str(part_speech))
 
-    # return a importable text separated with breaklines <br>
-    return "<br>".join(new_content), part_speech
+    # # return a importable text separated with breaklines <br>
+    # return "<br>".join(new_content), part_speech
 
     # }}}
 
