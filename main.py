@@ -34,8 +34,10 @@ def main():
     # retrieve a list of vocabulary
     sql_res = retr_vocab("./database/vocab.db")
     print("Obtained vocabulary from database")
+    vocab_list = [vocab[0] for vocab in sql_res]
+    vocab_list.sort()
 
-    for voc in sql_res:
+    for voc in vocab_list:
         voc = str(voc[0])
         print("looping thru sql result: " + voc)
         try:
