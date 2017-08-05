@@ -4,8 +4,8 @@
 import sqlite3
 from extract import extracting
 
-SQL_PATH_CUS = "./database/vocab.db"
-# SQL_PATH_CUS = "./database/test.db"
+# SQL_PATH_CUS = "./database/vocab.db"
+SQL_PATH_CUS = "./database/test.db"
 
 # Method: retrieve vocab
 def retr_vocab(sql_path):

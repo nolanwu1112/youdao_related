@@ -5,7 +5,7 @@
 """
 
 # import sqlite3
-from derivatives_data import derivatives
+from related_data import der
 from aqt import mw
 from aqt.utils import showInfo
 from aqt.qt import *
@@ -24,7 +24,7 @@ def adding_derivatives():
         note = card.note()
         vocab_anki = note['vocab']
         try:
-            note["derivatives"] = derivatives[vocab_anki].decode("utf-8")
+            note["derivatives"] = der[vocab_anki].decode("utf-8")
         except KeyError:
             pass
         note.flush()
