@@ -42,7 +42,7 @@ def main(sql_input):
     total = len(vocab_list)
     count = 0
     for voc in vocab_list:
-        voc = str(voc[0])
+        voc = str(voc)
         print("looping thru sql result: " + voc)
         dict_der[voc] = extracting(voc)
         count += 1
