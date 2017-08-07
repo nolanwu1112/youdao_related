@@ -24,7 +24,7 @@ def adding_derivatives():
         note = card.note()
         vocab_anki = note['vocab']
         try:
-            note["derivatives"] = der[vocab_anki].decode("utf-8")
+            note["derivative"] = der[vocab_anki].decode("utf-8")
         except KeyError:
             pass
         note.flush()

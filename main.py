@@ -4,8 +4,8 @@
 import sqlite3
 from extract import extracting
 
-# SQL_PATH_CUS = "./database/vocab.db"
-SQL_PATH_CUS = "./database/test.db"
+SQL_PATH_CUS = "./database/vocab.db"
+# SQL_PATH_CUS = "./database/test.db"
 
 # Method: retrieve vocab
 def retr_vocab(sql_path):
@@ -52,7 +52,7 @@ def main(sql_input):
     store_der(SQL_PATH_CUS, dict_der)
     print("Finishing writing database!!")
     with open(r"related_data.py", "w") as file:
-        file.write(dict_der)
+        file.write(str(dict_der))
     print("Finishing writing data file!")
 
 if __name__ == '__main__':
