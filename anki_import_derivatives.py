@@ -4,7 +4,6 @@
     in table: pho
 """
 
-# import sqlite3
 from related_data import der
 from aqt import mw
 from aqt.utils import showInfo
